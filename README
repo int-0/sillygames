@@ -1,0 +1,9 @@
+List of silly tests:
+
+- Cairo tetris
+
+	cairo_tetris/
+
+	Simple tetris game written in python using cairo vector graphics.
+	It's a very initial version, without scores, levels and it is endless!
+
