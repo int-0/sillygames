@@ -54,9 +54,9 @@ class Display(gtk.DrawingArea):
                                  size_x, size_y)
                     cr.fill()
 
-    def connect_signals(self):
-        self.connect('key-press-event', self.do_key_press_event)
-        self.connect('key-release-event', self.do_key_release_event)
+    # def connect_signals(self):
+    #     self.connect('key-press-event', self.do_key_press_event)
+    #     self.connect('key-release-event', self.do_key_release_event)
 
 if __name__ == '__main__':
     window = gtk.Window()
@@ -67,7 +67,7 @@ if __name__ == '__main__':
     window.add(board)
     window.present()
 
-    # Draw some boxes
+    # Test: draw some boxes
     board.boxes.append((0, 0))
     board.boxes.append((9, 9))
     board.show()

@@ -287,5 +287,3 @@ if __name__ == '__main__':
     window.set_default_size(350, 700)
     game = Game(window)
     game.game_loop()
-
-    # game.game_loop()
