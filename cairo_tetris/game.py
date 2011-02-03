@@ -122,7 +122,7 @@ class Game:
             ]
 
     def __flush_events(self):
-        # GTK iteraction
+        # GTK iteration
         while gtk.events_pending():
             gtk.main_iteration()
 
@@ -130,13 +130,14 @@ class Game:
         self.__quit_game = True
 
     def __press_key(self, widget, event):
-        #print 'Keyval:', event.keyval
         if self.__selected < len(self.__in_game):
             part = self.__in_game[self.__selected]
 
+            # CURSOR_DOWN
             if event.keyval == 65364:
                 self.__fast_down = True
 
+            # CURSOR_LEFT
             if event.keyval == 65361:
                 if self.part_fills(part[1] - 1, part[2], part[0]):
                     self.clear_phantom_part(part[1], part[2], part[0])
@@ -147,6 +148,7 @@ class Game:
                 # Update frame
                 self.__win.queue_draw()
 
+            # CURSOR_RIGHT
             if event.keyval == 65363:
                 if self.part_fills(part[1] + 1, part[2], part[0]):
                     self.clear_phantom_part(part[1], part[2], part[0])
@@ -157,6 +159,7 @@ class Game:
                 # Update frame
                 self.__win.queue_draw()
 
+            # CURSOR_UP
             if event.keyval == 65362:
                 part[0].rotate_pos()
                 if self.part_fills(part[1], part[2], part[0]):
