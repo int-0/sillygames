@@ -1,0 +1,58 @@
+#!/usr/bin/env python
+#
+
+# Simple text surface
+class TxtSurface:
+    def __init__(self, size, data = []):
+        raise NotImplementedError
+
+    def clear(self):
+        raise NotImplementedError
+
+    def resize(self, new_size):
+        raise NotImplementedError
+
+    def blit(self, position, surface):
+        raise NotImplementedError
+
+    def set_foreground(self, attributes, color):
+        raise NotImplementedError
+
+    def set_background(self, attributes, color):
+        raise NotImplementedError
+
+    # Char format: (ascii-char, text_attribute, foreground, background)
+    def fill(self, char):
+        raise NotImplementedError
+
+    def dump(self, position, text, attributes, foreground, background):
+        raise NotImplementedError
+
+    # Surface data is public, but this methods ensure compatibility
+    # between drivers
+
+    # Return tuple: (char, text_attribute, foreground, background)
+    def chat_at(self, position):
+        raise NotImplementedError
+
+    # Char format: (ascii-char, text_attribute, foreground, background)
+    def set_char(self, position, char):
+        raise NotImplementedError
+
+# Terminal
+class Terminal(TxtSurface):
+
+    def __init__(self, size = None):
+        raise NotImplementedError
+
+    def reset(self):
+        raise NotImplementedError
+
+    def maximize(self):
+        raise NotImplementedError
+
+    def frame(self):
+        raise NotImplementedError
+
+    def close(self, with_clear = False):
+        raise NotImplementedError
