@@ -250,7 +250,6 @@ class DictFS(Fuse):
         # Return written bytes
         return len(buf)
 
-    # TO-DO: this!
     def rename ( self, oldPath, newPath ):
         logging.debug('*** rename(%s, %s)', oldPath, newPath)
 
