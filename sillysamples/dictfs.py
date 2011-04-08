@@ -4,11 +4,6 @@ import os
 import stat
 import errno
 
-# # pull in some spaghetti to make this stuff work without fuse-py being installed
-# try:
-#     import _find_fuse_parts
-# except ImportError:
-#     pass
 import fuse
 from fuse import Fuse
 if not hasattr(fuse, '__version__'):
@@ -224,8 +219,12 @@ class DictFS(Fuse):
         if not level.has_key(filename):
             return -errno.ENOENT
 
-        # Truncate file to specified size
-        level[filename] = ' ' * size
+        if len(level[filename]) > size:
+            # Truncate file to specified size
+            level[filename] = level[filename][:size]
+        else:
+            # Add more bytes
+            level[filename] += ' ' * (size - len(level[filename]))
         
     def unlink ( self, path ):
         logging.debug('*** unlink(%s)', path)
@@ -245,6 +244,8 @@ class DictFS(Fuse):
         level, filename = self.__navigate(path)
 
         # Write data into file
+        if offset > len(level[filename]):
+            offset = (offset % len(level[filename]))
         level[filename] = level[filename][:offset] + str(buf)
         
         # Return written bytes
