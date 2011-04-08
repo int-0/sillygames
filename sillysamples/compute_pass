@@ -21,12 +21,13 @@ def calc_pass(bssid, essid):
 
 def usage():
     print 'Example of comtrend password generation algorithm by Int-0'
+    print 'Thanks to ACG for tips and RDC for bugs'
     print
     print 'Usage:'
     print '\t' + sys.argv[0] + ' <BSSID> <ESSID>'
     print
     print 'Example:'
-    print '\t' + sys.argv[0] + ' WLAN_ABCD A1:B2_C3:D4:E5:06'
+    print '\t' + sys.argv[0] + ' WLAN_ABCD A1:B2:C3:D4:E5:06'
     print
 
 if __name__ == '__main__':

@@ -253,8 +253,18 @@ class DictFS(Fuse):
     # TO-DO: this!
     def rename ( self, oldPath, newPath ):
         logging.debug('*** rename(%s, %s)', oldPath, newPath)
-        return -errno.ENOSYS
 
+        oldLevel, oldFilename = self.__navigate(oldPath)
+        # Can't use __navigate() because newPath-filename not exists
+        newPath = self.__path_list(newPath)
+        newFilename = newPath.pop()
+        newLevel = self.__get_dir(self.__join_path(newPath))
+
+        # Make new link
+        newLevel[newFilename] = oldLevel[oldFilename]
+
+        # Remove old
+        self.unlink(oldPath)
 
 def main():
     usage = """
